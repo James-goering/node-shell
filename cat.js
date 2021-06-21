@@ -1,13 +1,14 @@
 const fs = require('fs');
 
-module.exports = function cat(fName) {
+module.exports = function cat(callbackFunc, fName) {
 
     const filePath = process.cwd() + `/${fName}`;
     fs.readFile(filePath, 'utf8', (err, data) => {
         if (err) {
-            console.error(err)
+            callbackFunc(err);
             return;
         }
-        console.log(data)
+        callbackFunc(data);
+        // console.log(data)
     })
 }
